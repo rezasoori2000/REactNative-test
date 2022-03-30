@@ -10,10 +10,15 @@ const MealsList = (props) => {
         complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
         image={itemData.item.imageUrl}
+        fav={props.fav}
         onSelectMeal={() => {
-          props.navigation.navigate("MealDetailScreen", {
-            mealId: itemData.item.id,
-          });
+          props.navigation.navigate(
+            props.fav ? "favMealDtail" : "MealDetailScreen",
+            {
+              mealId: itemData.item.id,
+              fav: props.fav,
+            }
+          );
         }}
       />
     );

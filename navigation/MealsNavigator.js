@@ -9,7 +9,7 @@ import MealDetailScreen from "../screens/MealDetailScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import CustomHeaderBurron from "../components/HeaderButton";
+import HeaderButton from "../components/HeaderButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
@@ -44,8 +44,6 @@ function MyStack() {
         component={MealDetailScreen}
         options={{
           title: "Meal Categories",
-
-          headerRight: () => <CustomHeaderBurron />,
         }}
       />
       <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
@@ -67,7 +65,7 @@ function MyFavStack() {
     >
       <Tab.Screen name="favorite" component={FavoriteScreen} />
       <Tab.Screen
-        name="mealDtail"
+        name="favMealDtail"
         component={MealDetailScreen}
         screenOptions={{
           headerShown: false,
@@ -94,6 +92,16 @@ function MyTabs() {
             tabBarLabel: "Meals",
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="food" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="filters"
+          component={FiltersScreen}
+          options={{
+            tabBarLabel: "Filters",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="filter" color={color} size={size} />
             ),
           }}
         />

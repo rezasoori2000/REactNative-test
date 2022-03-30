@@ -1,18 +1,16 @@
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
-const CustomHeaderBurron = (props) => {
+const HeaderButton = (props) => {
   return (
     <FontAwesome.Button
-      name="star"
+      name={props.iconName}
       backgroundColor="#3b5998"
-      onPress={() => {
-        alert("Hi There");
-      }}
+      onPress={props.click}
     >
-      Title
+      {props.title}
     </FontAwesome.Button>
   );
 };
 
-export default CustomHeaderBurron;
+export default HeaderButton;

@@ -10,7 +10,7 @@ const CategoryMealScreen = ({ route, navigation }) => {
 
   //setCategory(CATEGORIES.find((x) => x.id === id));
   const meals = MEALS.filter((x) => x.categoryIds.indexOf(id) >= 0);
-  return <MealsList list={meals} navigation={navigation} />;
+  return <MealsList list={meals} navigation={navigation} fav={false} />;
 };
 
 export default CategoryMealScreen;
