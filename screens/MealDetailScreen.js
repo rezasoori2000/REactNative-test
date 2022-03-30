@@ -1,20 +1,32 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-import { MEALS } from "../data/dummy-data";
+import { useSelector, useDispatch } from "react-redux";
 import HeaderButton from "../components/HeaderButton";
+import { toggleFavorite } from "../store/actions/meals";
 
 var selectedMeal = {};
+
 const MealDetailScreen = (props) => {
+  const dispatch = useDispatch();
   const { mealId, fav } = props.route.params;
-  selectedMeal = MEALS.find((x) => x.id == mealId);
+  const meals = useSelector((x) => x.rootMeals.meals);
+
+  selectedMeal = meals.find((x) => x.id === mealId);
+  const isFav = useSelector((x) =>
+    x.rootMeals.favMeals.some((m) => m.id === mealId)
+  );
   useEffect(() => {
     props.navigation.setOptions({
+      headerShown: true,
       title: selectedMeal.title,
       headerRight: () => (
-        <HeaderButton click={() => alert("hello")} iconName="star" />
+        <HeaderButton
+          click={() => dispatch(toggleFavorite(mealId))}
+          iconName={isFav ? "star" : "star-half"}
+        />
       ),
     });
-  });
+  }, [isFav]);
 
   return (
     <View style={styles.screen}>

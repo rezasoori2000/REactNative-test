@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { MEALS } from "../data/dummy-data";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import MealsList from "../components/MealsList";
 
 const CategoryMealScreen = ({ route, navigation }) => {
@@ -8,8 +8,8 @@ const CategoryMealScreen = ({ route, navigation }) => {
     navigation.setOptions({ title: title });
   });
 
-  //setCategory(CATEGORIES.find((x) => x.id === id));
-  const meals = MEALS.filter((x) => x.categoryIds.indexOf(id) >= 0);
+  const availableMeals = useSelector((x) => x.rootMeals.filterMeals);
+  const meals = availableMeals.filter((x) => x.categoryIds.indexOf(id) >= 0);
   return <MealsList list={meals} navigation={navigation} fav={false} />;
 };
 

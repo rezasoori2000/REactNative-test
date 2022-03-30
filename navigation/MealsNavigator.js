@@ -57,7 +57,7 @@ function MyFavStack() {
       initialRouteName="favorite"
       screenOptions={{
         tabBarActiveTintColor: Colors.accentColor,
-        // headerShown: false,
+        headerShown: false,
         tabBarStyle: { display: "none" },
 
         backgroundColor: Platform.OS === "android" ? Colors.primary : "",
